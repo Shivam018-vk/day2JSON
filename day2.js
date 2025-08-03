@@ -105,33 +105,93 @@
 // }
 // console.log("Program continues to run here")
 
-const fs=require('fs/promises');
 
-async function processNames(){
-    const inputFilePath="names.txt";
-    const outputFilePath="formatted_names.txt";
+// PART2
+// const fs=require('fs/promises');
 
-    try{
-        console.log("starting the process file...");
+// async function processNames(){
+//     const inputFilePath="names.txt";
+//     const outputFilePath="formatted_names.txt";
 
-        const fileContent =await fs.readFile(inputFilePath,'utf8');
+//     try{
+//         console.log("starting the process file...");
 
-        const names =fileContent.trim().split("\n");
+//         const fileContent =await fs.readFile(inputFilePath,'utf8');
 
-            console.log(`Read ${names.length}names.`);
+//         const names =fileContent.trim().split("\n");
 
-            const formattedNames =names.map(name=>{
-                const trimmedNames =name.trim();
-                return trimmedNames.charAt(0).toUpperCase()+trimmedNames.slice(1).toLowerCase();
-            });
-            const outputContent =formattedNames.join("\n");
+//             console.log(`Read ${names.length}names.`);
 
-            await fs.writeFile(outputFilePath,outputContent,'utf8');
+//             const formattedNames =names.map(name=>{
+//                 const trimmedNames =name.trim();
+//                 return trimmedNames.charAt(0).toUpperCase()+trimmedNames.slice(1).toLowerCase();
+//             });
+//             const outputContent =formattedNames.join("\n");
 
-            console.log(`Successfully processed names and saved to ${outputFilePath}`);
+//             await fs.writeFile(outputFilePath,outputContent,'utf8');
+
+//             console.log(`Successfully processed names and saved to ${outputFilePath}`);
         
-        }catch(error){
-            console.log("An error occurred:",error.message);
-        }
-        }
-        processNames();
+//         }catch(error){
+//             console.log("An error occurred:",error.message);
+//         }
+//         }
+//         processNames();
+
+
+// PART 3
+// const fetch = require('node-fetch');
+
+// async function fetchPosts() {
+//     const url = "https://jsonplaceholder.typicode.com/posts";
+//     console.log("Fetching posts from API...");
+
+//     try {
+//         const response = await fetch(url);
+
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+
+//         const posts = await response.json();
+//         console.log("Successfully fetched posts!\n");
+
+//         posts.slice(0, 5).forEach((post, index) => {
+//             console.log(`${index + 1}. ${post.title}`);
+//         });
+
+//     } catch (error) {
+//         console.error("Failed to fetch posts:", error.message);
+//     }
+// }
+
+// fetchPosts();
+  
+
+// QN1
+
+// const num = BigInt(2) ** BigInt(1000);
+// const sum = num
+//   .toString()
+//   .split('')
+//   .map(Number)
+//   .reduce((acc, val) => acc + val, 0);
+
+// console.log("The Sum of the digit of Number 2^1000",sum);
+
+// Qn2
+let f1 = BigInt(1);
+let f2 = BigInt(1);
+let index = 2;
+
+while (true) {
+    const next = f1 + f2;
+    index++;
+    if (next.toString().length >= 1000) {
+        console.log("First Fibonacci number with 1000 digits is at position:", index);
+        break;
+    }
+    f1 = f2;
+    f2 = next;
+}
+
