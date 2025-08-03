@@ -91,16 +91,47 @@
 
 
     
-try{
-    const jsonData='{"name":"Alice","age":25}';
-    const user =JSON.parse(jsonData);
-    console.log("User data:",user.name);
+// try{
+//     const jsonData='{"name":"Alice","age":25}';
+//     const user =JSON.parse(jsonData);
+//     console.log("User data:",user.name);
 
-    const badJson ='{"name":"Bob}'
-    const badUser =JSON.parse(badJson);
-    console.log(badUser.name);
-}catch(error){
-    console.log("An error occured! Details:",error.message);
+//     const badJson ='{"name":"Bob}'
+//     const badUser =JSON.parse(badJson);
+//     console.log(badUser.name);
+// }catch(error){
+//     console.log("An error occured! Details:",error.message);
 
-}
-console.log("Program continues to run here")
+// }
+// console.log("Program continues to run here")
+
+const fs=require('fs/promises');
+
+async function processNames(){
+    const inputFilePath="names.txt";
+    const outputFilePath="formatted_names.txt";
+
+    try{
+        console.log("starting the process file...");
+
+        const fileContent =await fs.readFile(inputFilePath,'utf8');
+
+        const names =fileContent.trim().split("\n");
+
+            console.log(`Read ${names.length}names.`);
+
+            const formattedNames =names.map(name=>{
+                const trimmedNames =name.trim();
+                return trimmedNames.charAt(0).toUpperCase()+trimmedNames.slice(1).toLowerCase();
+            });
+            const outputContent =formattedNames.join("\n");
+
+            await fs.writeFile(outputFilePath,outputContent,'utf8');
+
+            console.log(`Successfully processed names and saved to ${outputFilePath}`);
+        
+        }catch(error){
+            console.log("An error occurred:",error.message);
+        }
+        }
+        processNames();
