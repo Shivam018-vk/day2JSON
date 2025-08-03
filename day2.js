@@ -77,17 +77,30 @@
 // // })
 // // console.log(a)
 
-const users =[
-    {name:'Alice',age:25},
-    {name:'Bob',age:30},
-    {name:'Charlie',age:25},
+// const users =[
+//     {name:'Alice',age:25},
+//     {name:'Bob',age:30},
+//     {name:'Charlie',age:25},
 
-]
-console.log(users)
+// ]
+// console.log(users)
 
-let sum = users.reduce((a,user)=>a +user.age,0);
-let average =sum/users.length;
-console.log(average)
+// let sum = users.reduce((a,user)=>a +user.age,0);
+// let average =sum/users.length;
+// console.log(average)
 
 
     
+try{
+    const jsonData='{"name":"Alice","age":25}';
+    const user =JSON.parse(jsonData);
+    console.log("User data:",user.name);
+
+    const badJson ='{"name":"Bob}'
+    const badUser =JSON.parse(badJson);
+    console.log(badUser.name);
+}catch(error){
+    console.log("An error occured! Details:",error.message);
+
+}
+console.log("Program continues to run here")
