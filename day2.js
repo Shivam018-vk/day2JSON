@@ -180,18 +180,46 @@
 // console.log("The Sum of the digit of Number 2^1000",sum);
 
 // Qn2
-let f1 = BigInt(1);
-let f2 = BigInt(1);
-let index = 2;
+// let f1 = BigInt(1);
+// let f2 = BigInt(1);
+// let index = 2;
 
-while (true) {
-    const next = f1 + f2;
-    index++;
-    if (next.toString().length >= 1000) {
-        console.log("First Fibonacci number with 1000 digits is at position:", index);
-        break;
-    }
-    f1 = f2;
-    f2 = next;
+// while (true) {
+//     const next = f1 + f2;
+//     index++;
+//     if (next.toString().length >= 1000) {
+//         console.log("First Fibonacci number with 1000 digits is at position:", index);
+//         break;
+//     }
+//     f1 = f2;
+//     f2 = next;
+// }
+
+function collatzLength(n, memo) {
+  if (n === 1) return 1;
+  if (memo[n]) return memo[n];
+
+  let next = n % 2 === 0 ? n / 2 : 3 * n + 1;
+  memo[n] = 1 + collatzLength(next, memo);
+  return memo[n];
 }
 
+function findLongestCollatz(limit) {
+  let maxLength = 0;
+  let startingNumber = 1;
+  let memo = {};
+
+  for (let i = 1; i < limit; i++) {
+    let length = collatzLength(i, memo);
+    if (length > maxLength) {
+      maxLength = length;
+      startingNumber = i;
+    }
+  }
+
+  console.log(`Starting number under ${limit} with the longest chain: ${startingNumber}`);
+  console.log(`Length of chain: ${maxLength}`);
+  return startingNumber;
+}
+
+findLongestCollatz(1000000);
