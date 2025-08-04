@@ -195,31 +195,32 @@
 //     f2 = next;
 // }
 
-function collatzLength(n, memo) {
-  if (n === 1) return 1;
-  if (memo[n]) return memo[n];
+// function collatzLength(n, memo) {
+//   if (n === 1) return 1;
+//   if (memo[n]) return memo[n];
 
-  let next = n % 2 === 0 ? n / 2 : 3 * n + 1;
-  memo[n] = 1 + collatzLength(next, memo);
-  return memo[n];
-}
+//   let next = n % 2 === 0 ? n / 2 : 3 * n + 1;
+//   memo[n] = 1 + collatzLength(next, memo);
+//   return memo[n];
+// }
 
-function findLongestCollatz(limit) {
-  let maxLength = 0;
-  let startingNumber = 1;
-  let memo = {};
+// function findLongestCollatz(limit) {
+//   let maxLength = 0;
+//   let startingNumber = 1;
+//   let memo = {};
 
-  for (let i = 1; i < limit; i++) {
-    let length = collatzLength(i, memo);
-    if (length > maxLength) {
-      maxLength = length;
-      startingNumber = i;
-    }
-  }
+//   for (let i = 1; i < limit; i++) {
+//     let length = collatzLength(i, memo);
+//     if (length > maxLength) {
+//       maxLength = length;
+//       startingNumber = i;
+//     }
+//   }
 
-  console.log(`Starting number under ${limit} with the longest chain: ${startingNumber}`);
-  console.log(`Length of chain: ${maxLength}`);
-  return startingNumber;
-}
+//   console.log(`Starting number under ${limit} with the longest chain: ${startingNumber}`);
+//   console.log(`Length of chain: ${maxLength}`);
+//   return startingNumber;
+// }
 
-findLongestCollatz(1000000);
+// findLongestCollatz(1000000);
+// SHIVAM
